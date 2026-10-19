@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Categorias</title>
+
+    <!-- SUPABASE -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f5f6f8;
+            color: #222;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 40px 20px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+        }
+
+        .header p {
+            color: #777;
+        }
+
+        .categorias {
+            display: grid;
+            grid-template-columns:
+                repeat(auto-fill, minmax(250px, 1fr));
+
+            gap: 24px;
+        }
+
+        .card {
+            background: #fff;
+            border-radius: 16px;
+            overflow: hidden;
+
+            box-shadow:
+                0 4px 15px rgba(0,0,0,0.08);
+
+            transition:
+                transform 0.2s,
+                box-shadow 0.2s;
+
+            cursor: pointer;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+
+            box-shadow:
+                0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 180px;
+
+            background: #eee;
+
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+        }
+
+        .card-content {
+            padding: 20px;
+        }
+
+        .card-header {
+            display: flex;
+
+            justify-content: space-between;
+            align-items: center;
+
+            gap: 10px;
+
+            margin-bottom: 10px;
+        }
+
+        .card h2 {
+            font-size: 20px;
+        }
+
+        .status {
+            font-size: 12px;
+
+            padding: 5px 10px;
+
+            border-radius: 20px;
+
+            white-space: nowrap;
+        }
+
+        .status.ativo {
+            background: #dcfce7;
+            color: #15803d;
+        }
+
+        .status.inativo {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .descricao {
+            color: #666;
+
+            font-size: 14px;
+
+            line-height: 1.5;
+
+            min-height: 42px;
+        }
+
+        .card-id {
+            margin-top: 15px;
+
+            font-size: 11px;
+
+            color: #aaa;
+
+            word-break: break-all;
+        }
+
+        .sem-imagem {
+            width: 100%;
+            height: 100%;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            color: #aaa;
+
+            font-size: 14px;
+        }
+
+        .carregando {
+            text-align: center;
+
+            padding: 50px;
+
+            color: #777;
+        }
+
+        .erro {
+            background: #fee2e2;
+
+            color: #b91c1c;
+
+            padding: 20px;
+
+            border-radius: 10px;
+
+            text-align: center;
+        }
+
+        .vazio {
+            text-align: center;
+
+            padding: 50px;
+
+            color: #777;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 25px 15px;
+            }
+
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .categorias {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+        .logo img {
+    width: 180px;
+    height: auto;
+}
+
+    </style>
+
+</head>
+
+<body>
+
+    <div class="container">
+
+        <div class="header">
+              <!-- LOGO -->
+            <a href="#" class="logo">
+                <img src="img/imagem2.png" alt="Quem Faz">
+            </a>
+
+
+        </div>
+        <div
+            id="categorias"
+            class="categorias"
+        >
+
+            <div class="carregando">
+                Carregando categorias...
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+
+        // =====================================================
+        // CONFIGURAÇÃO DO SUPABASE
+        // =====================================================
+
+        const SUPABASE_URL =
+            "https://ujrzbwoqcgygaizxnyhl.supabase.co";
+
+        const SUPABASE_KEY =
+            "sb_publishable_b6gtNhRw2SvBUYdI7_hzyQ_XL0wXFn3";
+
+
+        // =====================================================
+        // CRIAR CLIENTE
+        // =====================================================
+
+        const supabaseClient =
+            window.supabase.createClient(
+                SUPABASE_URL,
+                SUPABASE_KEY
+            );
+
+
+        // =====================================================
+        // CARREGAR CATEGORIAS NA TELA
+        // =====================================================
+
+        function carregarCategorias(data) {
+
+            const container =
+                document.getElementById("categorias");
+
+            container.innerHTML = "";
+
+
+            // Nenhuma categoria
+
+            if (!data || data.length === 0) {
+
+                container.innerHTML = `
+                    <div class="vazio">
+                        Nenhuma categoria encontrada.
+                    </div>
+                `;
+
+                return;
+            }
+
+
+            // Criar cards
+
+            data.forEach((categoria) => {
+
+                const ativo =
+                    categoria.status === "active";
+
+
+                const card =
+                    document.createElement("div");
+
+
+                card.className = "card";
+
+
+                card.innerHTML = `
+
+                    <div class="card-image">
+
+                        ${
+                            categoria.image_url
+
+                            ?
+
+                            `
+                                <img
+                                    src="${categoria.image_url}"
+                                    alt="${categoria.name}"
+                                    loading="lazy"
+                                    onerror="
+                                        this.style.display='none';
+                                        this.parentElement
+                                            .querySelector('.sem-imagem')
+                                            .style.display='flex';
+                                    "
+                                >
+
+                                <div
+                                    class="sem-imagem"
+                                    style="display:none"
+                                >
+                                    Sem imagem
+                                </div>
+                            `
+
+                            :
+
+                            `
+                                <div class="sem-imagem">
+                                    Sem imagem
+                                </div>
+                            `
+                        }
+
+                    </div>
+
+
+                    <div class="card-content">
+
+                        <div class="card-header">
+
+                            <h2>
+                                ${categoria.name || "Sem nome"}
+                            </h2>
+
+                            
+                        </div>
+
+
+                        <p class="descricao">
+
+                            ${
+                                categoria.description ||
+                                "Nenhuma descrição disponível."
+                            }
+
+                        </p>
+
+
+
+                    </div>
+
+                `;
+
+
+                container.appendChild(card);
+
+            });
+
+        }
+
+
+        // =====================================================
+        // BUSCAR CATEGORIAS
+        // =====================================================
+
+        async function carregarDados() {
+
+            console.log(
+                "🚀 Conectando ao Supabase..."
+            );
+
+
+            try {
+
+                const {
+                    data,
+                    error
+                } = await supabaseClient
+
+                    .from("categories")
+
+                    .select(`
+                        id,
+                        name,
+                        description,
+                        status,
+                        image_url,
+                        created_at,
+                        updated_at
+                    `)
+
+                    .order(
+                        "name",
+                        {
+                            ascending: true
+                        }
+                    );
+
+
+                // =================================================
+                // ERRO
+                // =================================================
+
+                if (error) {
+
+                    console.error(
+                        "❌ Erro ao consultar Supabase:"
+                    );
+
+                    console.error(error);
+
+
+                    document.getElementById(
+                        "categorias"
+                    ).innerHTML = `
+
+                        <div class="erro">
+
+                            ❌ Erro ao carregar categorias.
+
+                            <br><br>
+
+                            ${error.message}
+
+                        </div>
+
+                    `;
+
+                    return;
+                }
+
+
+                // =================================================
+                // SUCESSO
+                // =================================================
+
+                console.log(
+                    "✅ Conexão com Supabase funcionando!"
+                );
+
+                console.log(
+                    "📁 Total de categorias:",
+                    data.length
+                );
+
+
+                // Mostrar no console
+
+                data.forEach(
+                    (categoria, index) => {
+
+                        console.log(
+                            `📁 Categoria ${index + 1}`
+                        );
+
+                        console.log(
+                            "ID:",
+                            categoria.id
+                        );
+
+                        console.log(
+                            "Nome:",
+                            categoria.name
+                        );
+
+                        console.log(
+                            "Status:",
+                            categoria.status
+                        );
+
+                        console.log(
+                            "Descrição:",
+                            categoria.description
+                        );
+
+                        console.log(
+                            "Imagem:",
+                            categoria.image_url
+                        );
+
+                    }
+                );
+
+
+                // =================================================
+                // MOSTRAR NA PÁGINA
+                // =================================================
+
+                carregarCategorias(data);
+
+            }
+
+
+            catch (erro) {
+
+                console.error(
+                    "❌ Erro inesperado:",
+                    erro
+                );
+
+            }
+
+        }
+
+
+        // =====================================================
+        // INICIAR
+        // =====================================================
+
+        carregarDados();
+
+    </script>
+
+</body>
+
+</html>

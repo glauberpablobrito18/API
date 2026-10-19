@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f7f0e7">
+  <title>Quem Faz — Encontre profissionais</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+ <header class="header">
+
+        <div class="container header-container">
+
+            <!-- LOGO -->
+            <a href="#" class="logo">
+                <img src="" alt="Quem Faz">
+            </a>
+
+
+            <!-- MENU -->
+            <nav class="main-nav">
+
+                <a href="#inicio" class="nav-link active">
+                    Início
+                </a>
+
+                <a href="categorias.html" class="nav-link">
+                    Categorias
+                </a>
+
+                <a href="#prestador" class="nav-link">
+                    Seja um prestador
+                </a>
+
+            </nav>  
+
+
+            <div class="header-actions">
+                <a href="Nova pasta/entrar.html">
+                <button class="btn btn-login" id="openLogin">
+                    Entrar
+                </button>
+                </a>
+                <a href="Nova pasta/quemfaz_cadastro/index.html">
+                <button class="btn btn-primary" id="openRegister">
+                    Cadastrar
+                </button>
+                </a>
+            </div>
+</header>
+
+  <main>
+    <section class="hero" id="inicio">
+      <div class="hero-copy">
+        <span class="eyebrow" id="eyebrow">SERVIÇOS DE CONFIANÇA PERTO DE VOCÊ</span>
+        <h1 id="heroTitle">Encontre <span>quem faz.</span></h1>
+        <p class="hero-description" id="heroDescription">Encontre profissionais qualificados para resolver o que você precisa, de forma rápida, simples e segura.</p>
+
+        <form class="search-bar" id="searchForm">
+          <label class="search-field">
+            <span class="sr-only">Qual serviço você precisa?</span>
+            <span class="field-icon">⌕</span>
+            <input id="serviceInput" type="search" placeholder="O que você precisa?" autocomplete="off">
+          </label>
+          <label class="location-field">
+            <span class="pin">●</span>
+            <span class="sr-only">Cidade</span>
+            <input id="locationInput" type="text" placeholder="Sua cidade" value="Santa Inês - MA">
+          </label>
+          <button class="button search-button" type="submit">Buscar <span aria-hidden="true">→</span></button>
+        </form>
+        <p class="search-feedback" id="searchFeedback" role="status"></p>
+
+        <div class="stats">
+          <div><strong id="statOne">+1.000</strong><span id="statOneLabel">Empresas</span></div>
+          <div><strong id="statTwo">+8.000</strong><span id="statTwoLabel">Profissionais</span></div>
+          <div class="trust-note"><span class="trust-dot"></span> Encontre alguém para ajudar</div>
+        </div>
+      </div>
+
+      <div class="hero-visual" aria-label="Profissional pronto para atender">
+        <div class="shape shape-navy"></div>
+        <div class="shape shape-orange"></div>
+        <div class="hero-photo">
+          <img id="heroImage" src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=1000&q=85" alt="Profissional trabalhando">
+        </div>
+        <div class="availability-card">
+          <span class="availability-icon">✓</span>
+          <span><strong id="availabilityTitle">Profissionais disponíveis</strong><small id="availabilitySubtitle">Prontos para atender você</small></span>
+        </div>
+      </div>
+    </section>
+
+    <section class="professional-section" id="profissionais">
+      <div class="section-heading">
+        <div><span class="eyebrow">ENCONTRE O PROFISSIONAL CERTO</span><h2 id="listTitle">Profissionais em destaque</h2></div>
+        <a class="text-link" href="#todos">Ver todos <span>→</span></a>
+      </div>
+      <div class="filter-row">
+        <button class="filter-chip selected" data-filter="all">Todos</button>
+        <button class="filter-chip" data-filter="available">Disponíveis agora</button>
+        <button class="filter-chip" data-filter="top">Mais bem avaliados</button>
+      </div>
+      <div class="professional-grid" id="professionalGrid"></div>
+      <p class="empty-state" id="emptyState" hidden>Nenhum profissional encontrado com esses filtros. Tente outra busca.</p>
+    </section>
+
+    <section class="how-section" id="como-funciona">
+      <div class="how-intro"><span class="eyebrow">SIMPLES DO INÍCIO AO FIM</span><h2>Resolver ficou mais fácil.</h2><p>Encontre, compare e entre em contato com profissionais em poucos passos.</p></div>
+      <div class="steps">
+        <article class="step"><span>01</span><h3>Busque</h3><p>Informe o serviço que você precisa e sua localização.</p></article>
+        <article class="step"><span>02</span><h3>Compare</h3><p>Veja perfis, avaliações e disponibilidade.</p></article>
+        <article class="step"><span>03</span><h3>Entre em contato</h3><p>Escolha quem combina com sua necessidade.</p></article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><a class="brand footer-brand" href="#"><span class="brand-mark">QF</span><span class="brand-copy"><strong>Quem<span>Faz</span></strong><small>Conectando você a quem faz.</small></span></a><p>Encontre bons profissionais, perto de você.</p><span>© <span id="year"></span> Quem Faz</span></footer>
+  <script src="config.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

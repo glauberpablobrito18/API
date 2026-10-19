@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro — QuemFaz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+    <section class="brand-panel">
+      <div class="brand">
+        <div class="logo-mark">Q</div>
+        <div>
+          <strong>QuemFaz</strong>
+          <span>Conectando você a quem faz.</span>
+        </div>
+      </div>
+
+      <img
+        src="https://images.pexels.com/photos/30928418/pexels-photo-30928418.jpeg?_gl=1*cqpkb6*_ga*NTI3OTQ1MzI1LjE3OTAyODk0NDg.*_ga_8JE65Q40S6*czE3OTAyODk0NDckbzEkZzEkdDE3OTAyODk0NTIkajU1JGwwJGgw"
+        class="hero-image"
+        alt="Profissional"
+    >
+
+      <div class="hero-copy">
+        <span class="eyebrow">FAÇA PARTE DA NOSSA COMUNIDADE</span>
+        <h1>Encontre<br><em>quem faz.</em></h1>
+        <p>Crie sua conta e encontre profissionais de confiança de forma rápida, simples e segura.</p>
+
+        <div class="benefits">
+          <div><b>✓</b><span>Encontre profissionais perto de você</span></div>
+          <div><b>✓</b><span>Compare serviços e encontre o que precisa</span></div>
+          <div><b>✓</b><span>Tenha uma experiência simples e segura</span></div>
+        </div>
+      </div>
+
+      <div class="decor-circle"></div>
+      <div class="decor-shape"></div>
+    </section>
+
+    <section class="signup-panel">
+      <div class="signup-card">
+        <a class="back" href="/D:/API/Nova%20pasta/entrar.html">← Voltar para o login</a>
+
+        <div class="mobile-brand">
+          <div class="logo-mark small">Q</div>
+          <strong>QuemFaz</strong>
+        </div>
+
+        <span class="eyebrow"></span>
+        <h2>Cadastre-se</h2>
+        <p class="subtitle">Preencha seus dados para começar a usar o QuemFaz.</p>
+
+        <form id="signupForm" novalidate>
+          <div class="name-grid">
+            <div>
+              <label for="firstName">Nome</label>
+              <div class="input-wrap">
+                <span>👤</span>
+                <input id="firstName" type="text" placeholder="Seu nome" autocomplete="given-name">
+              </div>
+              <small class="error" id="firstNameError"></small>
+            </div>
+
+            <div>
+              <label for="lastName">Sobrenome</label>
+              <div class="input-wrap">
+                <input id="lastName" type="text" placeholder="Seu sobrenome" autocomplete="family-name">
+              </div>
+              <small class="error" id="lastNameError"></small>
+            </div>
+          </div>
+
+          <label for="email">E-mail</label>
+          <div class="input-wrap">
+            <span>✉</span>
+            <input id="email" type="email" placeholder="seuemail@exemplo.com" autocomplete="email">
+          </div>
+          <small class="error" id="emailError"></small>
+
+          <label for="phone">Telefone</label>
+          <div class="input-wrap">
+            <span>☎</span>
+            <input id="phone" type="tel" placeholder="(00) 00000-0000" autocomplete="tel">
+          </div>
+          <small class="error" id="phoneError"></small>
+
+          <label for="password">Senha</label>
+          <div class="input-wrap">
+            <span></span>
+            <input id="password" type="password" placeholder="Crie uma senha" autocomplete="new-password">
+            <button class="toggle" type="button" id="togglePassword">◉</button>
+          </div>
+          <small class="password-tip">Use pelo menos 6 caracteres.</small>
+          <small class="error" id="passwordError"></small>
+
+          <label for="confirmPassword">Confirmar senha</label>
+          <div class="input-wrap">
+            <span></span>
+            <input id="confirmPassword" type="password" placeholder="Repita sua senha" autocomplete="new-password">
+          </div>
+          <small class="error" id="confirmPasswordError"></small>
+
+          <label class="terms">
+            <input type="checkbox" id="terms">
+            <span>Li e aceito os <a href="#">Termos de Uso</a> e a <a href="#">Política de Privacidade</a>.</span>
+          </label>
+          <small class="error" id="termsError"></small>
+
+          <button class="submit" type="submit" id="submitBtn">Criar minha conta</button>
+          <div class="message" id="message"></div>
+        </form>
+
+        <p class="login-link">Já possui uma conta?
+          <a href="index.html">Entrar</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

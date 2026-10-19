@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Quem Faz - Encontre profissionais para realizar seus serviços.">
+    <title>Quem Faz | Encontre quem faz</title>
+
+    <!-- Fonte -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<body>
+
+
+    <header class="header">
+
+        <div class="container header-container">
+
+            <!-- LOGO -->
+            <a href="#" class="logo">
+                <img src="img/imagem2.png" alt="Quem Faz">
+            </a>
+
+
+            <!-- MENU -->
+            <nav class="main-nav">
+
+                <a href="#inicio" class="nav-link active">
+                    Início
+                </a>
+
+                <a href="categorias.html" class="nav-link">
+                    Categorias
+                </a>
+
+                <a href="#prestador" class="nav-link">
+                    Seja um prestador
+                </a>
+
+            </nav>  
+
+
+            <div class="header-actions">
+                <a href="Nova pasta/entrar.html">
+                <button class="btn btn-login" id="openLogin">
+                    Entrar
+                </button>
+                </a>
+                <a href="Nova pasta/quemfaz_cadastro/index.html">
+                <button class="btn btn-primary" id="openRegister">
+                    Cadastrar
+                </button>
+                </a>
+            </div>
+
+
+            <button class="mobile-menu-button" id="mobileMenuButton" aria-label="Abrir menu">
+                ☰
+            </button>
+
+        </div>
+
+
+        <div class="mobile-menu" id="mobileMenu">
+
+            <a href="#inicio">
+                Início
+            </a>
+
+            <a href="#categorias">
+                Categorias
+            </a>
+
+            <a href="#como-funciona">
+                Como funciona
+            </a>
+
+            <a href="#prestador">
+                Seja um prestador
+            </a>
+
+            <button id="mobileLogin">
+                Entrar
+            </button>
+
+            <button id="mobileRegister">
+                Cadastrar
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+
+
+        <section class="hero">
+
+            <!-- Imagem principal ocupando toda a área -->
+            <div class="hero-background">
+                <img src="https://images.pexels.com/photos/7963796/pexels-photo-7963796.jpeg?_gl=1*ij94vk*_ga*MTc3MjEzNzg5Mi4xNzkyMTkxMzY1*_ga_8JE65Q40S6*czE3OTIxOTEzNjUkbzEkZzEkdDE3OTIxOTE1NjAkajE1JGwwJGgw" alt="Profissional prestador de serviço">
+            </div>
+
+            <div class="hero-overlay"></div>
+
+
+            <div class="hero-container">
+
+                <div class="hero-content">
+
+                    <span class="hero-badge">
+                        SERVIÇOS DE CONFIANÇA PERTO DE VOCÊ
+                    </span>
+
+                    <h1>
+                        Encontre
+                        <span>quem faz.</span>
+                    </h1>
+
+                    <p>
+                        A plataforma que conecta você com os melhores
+                        prestadores de serviço de forma rápida,
+                        simples e segura.
+                    </p>
+
+                    <form class="search-form">
+
+                        <div class="search-field">
+                            <span class="search-icon">⌕</span>
+
+                            <input type="text" placeholder="O que você precisa?">
+                        </div>
+
+<div class="search-field location-field">
+
+    <span class="location-icon" id="localizacao">📍</span>
+
+    <select id="cidade">
+        <option value="SANTA INÊS - MA">
+            SANTA INÊS - MA
+        </option>
+    </select>
+
+    
+
+</div>
+
+                        <button type="submit">
+                            Buscar
+                        </button>
+
+                    </form>
+
+                    <!-- Indicadores -->
+                    <div class="hero-stats">
+
+                        <div>
+                            <strong>+1000</strong>
+                            <span>Empresas</span>
+                        </div>
+
+                        <div>
+                            <strong>+8000</strong>
+                            <span>Profissionais</span>
+                        </div>
+
+                        
+
+                    </div>
+
+                </div>
+
+
+
+
+            </div>
+
+        </section>
+
+
+
+
+        <!-- =====================================================
+             CATEGORIAS
+        ====================================================== -->
+
+            <div class="espa">
+
+            </div>
+            
+            <div class="category-grid">
+
+    <button class="category-card" data-category="Mecânico">
+        <img src="https://images.pexels.com/photos/7564871/pexels-photo-7564871.jpeg"
+             alt="Profissional mecânico">
+        <span class="category-card-content">
+            <span class="category-label">CATEGORIA 01</span>
+            <span class="category-title">Mecânico</span>
+            <span class="category-description">Manutenção e reparos automotivos</span>
+       
+        </span>
+    </button>
+
+    <button class="category-card" data-category="Pedreiro">
+        <img src="https://media.istockphoto.com/id/622800884/pt/foto/close-up-of-industrial-bricklayer-installing-bricks-on-construction-site.jpg?b=1&s=612x612&w=0&k=20&c=H0p8yZM-l_q2y9R_oJdKreDa_9zCWOntg8otVg_4phE="
+             alt="Profissional de construção">
+        <span class="category-card-content">
+            <span class="category-label">CATEGORIA 02</span>
+            <span class="category-title">Pedreiro</span>
+            <span class="category-description">Construção, reformas e acabamentos</span>
+       
+        </span>
+    </button>
+
+    <button class="category-card" data-category="Eletricista">
+        <img src="https://images.pexels.com/photos/257736/pexels-photo-257736.jpeg"
+             alt="Serviços de eletricidade">
+        <span class="category-card-content">
+            <span class="category-label">CATEGORIA 03</span>
+            <span class="category-title">Eletricista</span>
+            <span class="category-description">Instalações e reparos elétricos</span>
+        
+        </span>
+    </button>
+
+    <button class="category-card" data-category="Limpeza">
+        <img src="https://images.pexels.com/photos/4239031/pexels-photo-4239031.jpeg"
+             alt="Serviços profissionais de limpeza">
+        <span class="category-card-content">
+            <span class="category-label">CATEGORIA 04</span>
+            <span class="category-title">Limpeza</span>
+            <span class="category-description">Limpeza residencial e comercial</span>
+    
+        </span>
+    </button>
+
+    <button class="category-card" data-category="Informática">
+        <img src="https://images.pexels.com/photos/546819/pexels-photo-546819.jpeg"
+             alt="Profissional de informática">
+        <span class="category-card-content">
+            <span class="category-label">CATEGORIA 05</span>
+            <span class="category-title">Informática</span>
+            <span class="category-description">Computadores, redes e suporte técnico</span>
+       
+        </span>
+    </button>
+
+    <button class="category-card" data-category="Pintura">
+        <img src="https://images.pexels.com/photos/6474471/pexels-photo-6474471.jpeg"
+             alt="Serviços de pintura">
+        <span class="category-card-content">
+            <span class="category-label">CATEGORIA 06</span>
+            <span class="category-title">Pintura</span>
+            <span class="category-description">Pintura de paredes e acabamentos</span>
+            
+        </span>
+    </button>
+
+    <button class="category-card" data-category="Automotivo">
+        <img src="https://images.pexels.com/photos/37809565/pexels-photo-37809565.jpeg?_gl=1*ijhbat*_ga*NzI4MDIxNjkxLjE3OTE1ODM0ODA.*_ga_8JE65Q40S6*czE3OTE1ODM0ODAkbzEkZzEkdDE3OTE1ODM2NjkkajEzJGwwJGgwhttps://images.pexels.com/photos/37809565/pexels-photo-37809565.jpeg?_gl=1*ijhbat*_ga*NzI4MDIxNjkxLjE3OTE1ODM0ODA.*_ga_8JE65Q40S6*czE3OTE1ODM0ODAkbzEkZzEkdDE3OTE1ODM2NjkkajEzJGwwJGgw"
+             alt="Serviços automotivos">
+        <span class="category-card-content">
+            <span class="category-label">CATEGORIA 07</span>
+            <span class="category-title">Automotivo</span>
+            <span class="category-description">Cuidados, revisão e manutenção de veículos</span>
+          
+        </span>
+    </button>
+
+    <button class="category-card" data-category="Design">
+        <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg"
+             alt="Profissional de design">
+        <span class="category-card-content">
+            <span class="category-label">CATEGORIA 08</span>
+            <span class="category-title">Design</span>
+            <span class="category-description">Criação visual e identidade gráfica</span>
+           
+        </span>
+    </button>
+
+        <button class="btn btn-primary1" id="openRegister">
+                    Veja mais 
+        </button>
+
+</div>
+
+<div class="espa">
+
+</div>
+
+    
+        <!-- =====================================================
+             COMO FUNCIONA
+        ====================================================== -->
+
+        <section class="section how-section" id="como-funciona">
+
+            <div class="container">
+
+                <div class="section-heading centered">
+
+                    <span class="section-label">
+                        SIMPLES E RÁPIDO
+                    </span>
+
+                    <h2>
+                        Como funciona
+                    </h2>
+
+                    <p>
+                        Encontrar o profissional ideal nunca foi tão fácil.
+                    </p>
+
+                </div>
+
+
+                <div class="steps-grid">
+
+
+                    <article class="step-card">
+
+                        <div class="step-number">
+                            01
+                        </div>
+
+                        <div class="step-icon">
+                            ⌕
+                        </div>
+
+                        <h3>
+                            Busque o serviço
+                        </h3>
+
+                        <p>
+                            Informe o serviço que você precisa
+                            e sua localização.
+                        </p>
+
+                    </article>
+
+
+                    <article class="step-card">
+
+                        <div class="step-number">
+                            02
+                        </div>
+
+                        <div class="step-icon">
+                           <img src="https://cdn-icons-png.flaticon.com/128/860/860800.png" alt="" class="inco">
+                        </div>
+
+                        <h3>
+                            Compare e escolha
+                        </h3>
+
+                        <p>
+                            Veja os profissionais disponíveis,
+                            avaliações e informações.
+                        </p>
+
+                    </article>
+
+
+                    <article class="step-card">
+
+                        <div class="step-number">
+                            03
+                        </div>
+
+                        <div class="step-icon">
+                            <img src="https://cdn-icons-png.flaticon.com/128/661/661512.png" alt="" class="inco">
+                        </div>
+
+                        <h3>
+                            Combine o serviço
+                        </h3>
+
+                        <p>
+                            Combine os detalhes diretamente
+                            com o profissional.
+                        </p>
+
+                    </article>
+
+
+                    <article class="step-card">
+
+                        <div class="step-number">
+                            04
+                        </div>
+
+                        <div class="step-icon">
+                           <img src="https://cdn-icons-png.flaticon.com/128/1962/1962520.png" alt="" class="inco">
+                        </div>
+
+                        <h3>
+                            Avalie com segurança
+                        </h3>
+
+                        <p>
+                            Depois do serviço, avalie sua
+                            experiência.
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             ESTATÍSTICAS
+        ====================================================== -->
+
+        <section class="stats-section">
+
+            <div class="container">
+
+                <div class="stats-wrapper">
+
+                    <div class="stats-title">
+
+                        <span class="section-label">
+                            NOSSA COMUNIDADE
+                        </span>
+
+                        <h2>
+                            Quem faz,<br>
+                            <span>faz bem!</span>
+                        </h2>
+
+                    </div>
+
+
+                    <div class="stats-grid">
+
+
+                        <div class="stat-item">
+
+                            <span class="stat-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/128/33/33308.png" alt="icone de pessoas" class="inco">
+                            </span>
+
+                            <strong>
+                                +2.500
+                            </strong>
+
+                            <span>
+                                Profissionais cadastrados
+                            </span>
+
+                        </div>
+
+
+                        <div class="stat-item">
+
+                            <span class="stat-icon">
+                                ✓
+                            </span>
+
+                            <strong>
+                                +8.000
+                            </strong>
+
+                            <span>
+                                Serviços realizados
+                            </span>
+
+                        </div>
+
+
+                        <div class="stat-item">
+
+                            <span class="stat-icon">
+                                ★
+                            </span>
+
+                            <strong>
+                                4,8
+                            </strong>
+
+                            <span>
+                                Avaliação média
+                            </span>
+
+                        </div>
+
+
+                        <div class="stat-item">
+
+                            <span class="stat-icon">
+                                <img src="https://cdn-icons-png.flaticon.com/128/3138/3138736.png" alt="imagem" class="inco">
+                            </span>
+
+                            <strong>
+                                Serra - ES
+                            </strong>
+
+                            <span>
+                                Atendemos toda a região
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =====================================================
+             CTA PRESTADOR
+        ====================================================== -->
+
+        <section class="provider-section" id="prestador">
+
+            <div class="container">
+
+                <div class="provider-card">
+
+                    <div>
+
+                        <span class="section-label">
+                            PARA PROFISSIONAIS
+                        </span>
+
+                        <h2>
+                            Você faz bem feito?
+                            <br>
+                            <span>Faça parte da nossa rede.</span>
+                        </h2>
+
+                        <p>
+                            Cadastre-se como prestador e encontre
+                            novos clientes para o seu serviço.
+                        </p>
+
+                    </div>
+
+                    <button class="btn btn-white" id="providerRegister">
+                        Quero ser prestador
+                        <span>→</span>
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+
+    <footer class="footer">
+
+        <div class="container">
+
+            <div class="footer-grid">
+
+
+                <div class="footer-brand">
+
+                    <img src="img/imagem2.png" alt="Quem Faz">
+
+                    <p>
+                        Conectando você a quem faz.
+                    </p>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>
+                        Quem Faz
+                    </h3>
+
+                    <a href="#inicio">
+                        Início
+                    </a>
+
+                    <a href="categorias.html">
+                        Categorias
+                    </a>
+
+                    <a href="#como-funciona">
+                        Como funciona
+                    </a>
+
+                    <a href="#prestador">
+                        Seja um prestador
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>
+                        Suporte
+                    </h3>
+
+                    <a href="#">
+                        Central de ajuda
+                    </a>
+
+                    <a href="#">
+                        Fale conosco
+                    </a>
+
+                    <a href="#">
+                        Termos de uso
+                    </a>
+
+                    <a href="#">
+                        Privacidade
+                    </a>
+
+                </div>
+
+
+                <div class="footer-column">
+
+                    <h3>
+                        Atendimento
+                    </h3>
+
+                    <p>
+                        Serra - ES
+                    </p>
+
+                    <p>
+                        Atendemos toda a região.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="footer-bottom">
+
+                <p>
+                    ©️ 2026 Quem Faz. Todos os direitos reservados.
+                </p>
+
+                <span>
+                    Feito para conectar pessoas.
+                </span>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+
+    <!-- =====================================================
+         MODAL DE LOGIN
+    ====================================================== -->
+
+    <div class="modal-overlay" id="loginModal">
+
+        <div class="modal">
+
+            <button class="modal-close" data-close="loginModal">
+                ×
+            </button>
+
+            <div class="modal-header">
+
+                <span class="modal-logo">
+                    QF
+                </span>
+
+                <h2>
+                    Bem-vindo de volta
+                </h2>
+
+                <p>
+                    Entre na sua conta para continuar.
+                </p>
+
+            </div>
+
+
+            <form id="loginForm">
+
+                <div class="form-group">
+
+                    <label for="loginEmail">
+                        E-mail
+                    </label>
+
+                    <input type="email" id="loginEmail" required placeholder="seu@email.com">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="loginPassword">
+                        Senha
+                    </label>
+
+                    <input type="password" id="loginPassword" required placeholder="Digite sua senha">
+
+                </div>
+
+
+                <div class="form-message" id="loginMessage"></div>
+
+                <a href="categorias.html">
+                <button type="submit" class="btn btn-primary btn-full">
+                    Entrar
+                </button>
+                </a>
+            </form>
+            
+
+            <p class="modal-switch">
+
+                Ainda não tem conta?
+
+                <button id="switchToRegister">
+                    Cadastre-se
+                </button>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MODAL DE CADASTRO
+    ====================================================== -->
+
+    <div class="modal-overlay" id="registerModal">
+
+        <div class="modal">
+
+            <button class="modal-close" data-close="registerModal">
+                ×
+            </button>
+
+
+            <div class="modal-header">
+
+                <span class="modal-logo">
+                    QF
+                </span>
+
+                <h2>
+                    Crie sua conta
+                </h2>
+
+                <p>
+                    Cadastre-se gratuitamente para começar.
+                </p>
+
+            </div>
+
+
+            <form id="registerForm">
+
+                <div class="form-group">
+
+                    <label for="registerName">
+                        Nome completo
+                    </label>
+
+                    <input type="text" id="registerName" required placeholder="Seu nome">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="registerEmail">
+                        E-mail
+                    </label>
+
+                    <input type="email" id="registerEmail" required placeholder="seu@email.com">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="registerPassword">
+                        Senha
+                    </label>
+
+                    <input type="password" id="registerPassword" minlength="6" required
+                        placeholder="Mínimo de 6 caracteres">
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label for="registerType">
+                        Quero me cadastrar como
+                    </label>
+
+                    <select id="registerType">
+
+                        <option value="cliente">
+                            Cliente
+                        </option>
+
+                        <option value="prestador">
+                            Prestador de serviço
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="form-message" id="registerMessage"></div>
+
+
+                <button type="submit" class="btn btn-primary btn-full">
+                    Criar minha conta
+                </button>
+
+            </form>
+
+
+            <p class="modal-switch">
+
+                Já possui uma conta?
+
+                <button id="switchToLogin">
+                    Entrar
+                </button>
+
+            </p>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         MODAL USUÁRIO LOGADO
+    ====================================================== -->
+
+    <div class="modal-overlay" id="userModal">
+
+        <div class="modal user-modal">
+
+            <button class="modal-close" data-close="userModal">
+                ×
+            </button>
+
+
+            <div class="user-avatar">
+                👤
+            </div>
+
+
+            <h2 id="userWelcome">
+                Olá!
+            </h2>
+
+
+            <p>
+                Você está conectado à sua conta.
+            </p>
+
+
+            <div class="user-actions">
+
+                <button class="btn btn-primary btn-full" id="continueButton">
+                    Seguir em frente →
+                </button>
+
+                <button class="btn btn-outline btn-full" id="logoutButton">
+                    Sair da conta
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script src="script.js"></script>
+
+</body>
+< </html>

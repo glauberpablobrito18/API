@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Entrar — QuemFaz</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="page">
+   <section class="brand-panel">
+
+    <div class="brand">
+        <div>
+           <!-- LOGO -->
+            <a href="/API/index.html" class="logo">
+                <img src="imagem2.png" alt="Quem Faz">
+            </a>
+
+        </div>
+    </div>
+
+
+    <div class="hero-copy">
+        <span class="eyebrow">
+            SERVIÇOS DE CONFIANÇA, PERTO DE VOCÊ
+        </span>
+
+        <h1>
+           Encontre empresas e fornecedores. <br>
+          
+        </h1>
+
+        <p>
+            <em>Conecte-se aos melhores profissionais de forma rápida,
+            simples e segura.</em>
+        </p>
+    </div>
+
+
+    <!-- NOVA IMAGEM -->
+    <img
+        src="https://images.pexels.com/photos/30928418/pexels-photo-30928418.jpeg?_gl=1*cqpkb6*_ga*NTI3OTQ1MzI1LjE3OTAyODk0NDg.*_ga_8JE65Q40S6*czE3OTAyODk0NDckbzEkZzEkdDE3OTAyODk0NTIkajU1JGwwJGgw"
+        class="hero-image"
+        alt="Profissional"
+    >
+
+
+    <div class="decor-circle"></div>
+    <div class="decor-shape"></div>
+
+</section>
+
+    <section class="login-panel">
+      <div class="login-card">
+        <a class="back" href="/inicio.html" id="backBtn">← Voltar</a>
+
+        <div class="mobile-brand">
+          <div class="logo-mark small">Q</div>
+          <strong>QuemFaz</strong>
+        </div>
+
+        <span class="eyebrow"></span>
+        <h2>Entre na sua conta</h2>
+        <p class="subtitle">Acesse sua conta para encontrar profissionais e serviços.</p>
+
+        <form id="loginForm" novalidate>
+          <label for="email">E-mail</label>
+          <div class="input-wrap">
+            <span>✉</span>
+            <input id="email" name="email" type="email" placeholder="seuemail@exemplo.com" autocomplete="email">
+          </div>
+          <small class="error" id="emailError"></small>
+
+          <div class="password-heading">
+            <label for="password">Senha</label>
+            <a href="#" id="forgotBtn">Esqueci minha senha</a>
+          </div>
+          <div class="input-wrap">
+            <img class="senha" src="https://cdn-icons-png.flaticon.com/128/3106/3106921.png" alt="">
+            <input id="password" name="password" type="password" placeholder="Digite sua senha" autocomplete="current-password">
+            <button class="toggle" type="button" id="togglePassword" aria-label="Mostrar senha">◉</button>
+          </div>
+          <small class="error" id="passwordError"></small>
+
+          <label class="remember">
+            <input type="checkbox" id="remember">
+            <span>Manter conectado</span>
+          </label>
+
+          <button class="submit" type="submit" id="submitBtn">Entrar</button>
+          <div class="message" id="message"></div>
+        </form>
+
+        <div class="divider"><span>ou</span></div>
+
+        <button class="social" type="button" id="googleBtn"><img class="google2"  src="https://cdn-icons-png.flaticon.com/128/300/300221.png" alt="">
+          <span class="google"></span> Continuar com Google
+        </button>
+
+        <p class="register">Ainda não possui uma conta?
+          <a href="quemfaz_cadastro/index.html" id="registerBtn">Cadastre-se</a>
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
