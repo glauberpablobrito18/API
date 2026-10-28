@@ -1,3 +1,11 @@
+const SUPABASE_URL = "https://ujrzbwoqcgygaizxnyhl.supabase.co";
+const SUPABASE_PUBLISHABLE_KEY = "sb_publishable_b6gtNhRw2SvBUYdI7_hzyQ_XL0wXFn3";
+
+const supabaseClient = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_PUBLISHABLE_KEY
+);
+
 const form = document.getElementById("loginForm");
 const email = document.getElementById("email");
 const password = document.getElementById("password");
@@ -17,28 +25,33 @@ togglePassword.addEventListener("click", () => {
   );
 });
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
 
   emailError.textContent = "";
   passwordError.textContent = "";
   message.textContent = "";
+  message.style.color = "";
+
+  const emailValue = email.value.trim();
+  const passwordValue = password.value;
 
   let valid = true;
 
-  if (!email.value.trim()) {
+  if (!emailValue) {
     emailError.textContent = "Informe seu e-mail.";
     valid = false;
-  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) {
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailValue)) {
     emailError.textContent = "Digite um e-mail válido.";
     valid = false;
   }
 
-  if (!password.value) {
+  if (!passwordValue) {
     passwordError.textContent = "Informe sua senha.";
     valid = false;
-  } else if (password.value.length < 6) {
-    passwordError.textContent = "A senha deve ter pelo menos 6 caracteres.";
+  } else if (passwordValue.length < 6) {
+    passwordError.textContent =
+      "A senha deve ter pelo menos 6 caracteres.";
     valid = false;
   }
 
@@ -47,22 +60,43 @@ form.addEventListener("submit", (event) => {
   submitBtn.disabled = true;
   submitBtn.textContent = "Entrando...";
 
-  // Demonstração front-end. Substitua este trecho pela chamada à sua API.
-  setTimeout(() => {
+  try {
+    const { data, error } =
+      await supabaseClient.auth.signInWithPassword({
+        email: emailValue,
+        password: passwordValue
+      });
+
+    if (error) {
+      console.error("Erro de autenticação:", error);
+      message.style.color = "#f15a24";
+      message.textContent =
+        "Não foi possível entrar. Confira seu e-mail e sua senha.";
+      return;
+    }
+
+    if (!data.user) {
+      message.style.color = "#f15a24";
+      message.textContent =
+        "Não foi possível confirmar sua conta.";
+      return;
+    }
+
+    message.style.color = "#16a34a";
+    message.textContent = "Login realizado com sucesso!";
+
+    // Troque pelo nome da página inicial do seu projeto.
+    window.location.href = "painel.html";
+
+  } catch (error) {
+    console.error("Erro de conexão:", error);
+    message.style.color = "#f15a24";
+    message.textContent =
+      "Erro ao conectar. Verifique sua internet e tente novamente.";
+  } finally {
     submitBtn.disabled = false;
     submitBtn.textContent = "Entrar";
-    message.textContent = "Login validado com sucesso!";
-
-    // Exemplo para integrar com backend:
-    // fetch("/api/login", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({
-    //     email: email.value,
-    //     password: password.value
-    //   })
-    // });
-  }, 900);
+  }
 });
 
 document.getElementById("forgotBtn").addEventListener("click", (event) => {
@@ -87,3 +121,5 @@ document.getElementById("backBtn").addEventListener("click", (event) => {
   event.preventDefault();
   history.back();
 });
+
+
